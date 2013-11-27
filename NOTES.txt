@@ -1,0 +1,12 @@
+
+
+
+void snapshot(string filename, int width, int height){
+   snapshotBuffer.resize(width * height * 4);
+   unsigned char* snapshotBufferPtr = (unsigned char*)(&(snapshotBuffer[0]));
+   glReadPixels(0,0,width,height,GL_RGBA,GL_UNSIGNED_BYTE,snapshotBufferPtr);
+   verticalFlipImage(snapshotBufferPtr, width, height, 4);
+   writePngRGB(filename.c_str(), snapshotBufferPtr, width, height);
+}
+
+
